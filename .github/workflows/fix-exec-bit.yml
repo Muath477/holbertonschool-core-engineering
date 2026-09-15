@@ -12,15 +12,15 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Make script executable
-        run: chmod +x python_fundamentals/hello_world/structured_output.py
+      - name: Make Python scripts executable
+        run: find . -type f -name "*.py" -exec chmod +x {} +
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions@github.com"
           if ! git diff --quiet; then
             git add -A
-            git commit -m "Auto-fix: make structured_output.py executable"
+            git commit -m "Auto-fix: make Python scripts executable"
             git push
           else
             echo "No changes needed"
