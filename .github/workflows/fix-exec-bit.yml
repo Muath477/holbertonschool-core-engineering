@@ -1,0 +1,27 @@
+name: Fix executable bit
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
+jobs:
+  fix-permissions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Make script executable
+        run: chmod +x python_fundamentals/hello_world/structured_output.py
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions@github.com"
+          if ! git diff --quiet; then
+            git add -A
+            git commit -m "Auto-fix: make structured_output.py executable"
+            git push
+          else
+            echo "No changes needed"
+          fi
