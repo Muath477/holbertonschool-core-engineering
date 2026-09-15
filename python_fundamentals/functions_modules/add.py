@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Program that imports add from add_0 and prints the result of 1 + 2."""
+"""Program that imports add and prints the result of 1 + 2."""
 from add_0 import add
 
 
