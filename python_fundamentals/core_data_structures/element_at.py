@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Module that safely retrieves an element from a list by index."""
 
+
 def element_at(my_list, idx):
     """Return the element at idx, or None if idx is invalid."""
     if idx < 0 or idx >= len(my_list):
