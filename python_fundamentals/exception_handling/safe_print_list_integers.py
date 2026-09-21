@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """Print only the integers among the first x elements of a list."""
 
 
