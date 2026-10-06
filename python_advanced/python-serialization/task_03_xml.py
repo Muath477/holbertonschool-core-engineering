@@ -17,6 +17,12 @@ def serialize_to_xml(dictionary, filename):
     for key, value in dictionary.items():
         child = ET.SubElement(root, key)
         child.text = str(value)
+    # ET.indent() needs Python 3.9+, so add the indentation by hand
+    if len(root):
+        root.text = "\n    "
+        for child in root:
+            child.tail = "\n    "
+        root[-1].tail = "\n"
     ET.ElementTree(root).write(filename, encoding="utf-8")
 
 
