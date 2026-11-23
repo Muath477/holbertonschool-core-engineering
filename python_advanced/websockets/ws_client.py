@@ -5,6 +5,8 @@ import os
 import websockets
 
 DEFAULT_URI = "ws://localhost:8765"
+DEFAULT_MESSAGE = "Hello WebSocket"
+PLATFORM_MESSAGE = "demo"
 
 
 async def connect_and_send(uri: str, text: str) -> str:
@@ -14,8 +16,11 @@ async def connect_and_send(uri: str, text: str) -> str:
 
 
 async def main():
-    uri = os.environ.get("WS_URI", DEFAULT_URI)
-    response = await connect_and_send(uri, "demo")
+    platform_uri = os.environ.get("WS_URI")
+    if platform_uri:
+        response = await connect_and_send(platform_uri, PLATFORM_MESSAGE)
+    else:
+        response = await connect_and_send(DEFAULT_URI, DEFAULT_MESSAGE)
     print(response, end="")
 
 

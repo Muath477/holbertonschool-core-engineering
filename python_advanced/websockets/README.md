@@ -9,15 +9,15 @@ small chat page in the browser.
 | File | Description |
 | --- | --- |
 | `echo_server.py` | Sends every message back to its sender |
-| `ws_client.py` | `connect_and_send(uri, text)` sends one message and returns the reply; running it prints the reply to `demo` with no newline |
+| `ws_client.py` | `connect_and_send(uri, text)` sends one message and returns the reply; running it sends `Hello WebSocket` to `ws://localhost:8765` and prints the reply with no newline |
 | `validation_server.py` | Replies `OK:<message>`, or `ERR:EMPTY` when the message is empty or only whitespace |
 | `unicast_server.py` | Keeps track of clients and replies `U:<message>` only to the sender |
 | `broadcast_server.py` | Sends `B:<message>` to every connected client and drops the ones that disconnected |
 | `asgi_server.py` | Starlette app: `/` returns `<h1>WebSocket Echo</h1>` and `/ws` is a WebSocket echo |
 | `index.html`, `styles.css`, `chat.js` | Browser chat that connects to `ws://localhost:8000/ws` |
 
-The `websockets` servers listen on `127.0.0.1:8765`. `ws_client.py` connects to
-`ws://localhost:8765`, or to the URI in the `WS_URI` variable when it is set.
+The `websockets` servers listen on `127.0.0.1:8765`. When the `WS_URI` variable
+is set, `ws_client.py` connects to that URI instead and sends `demo`.
 
 ## Usage
 
@@ -25,7 +25,7 @@ The `websockets` servers listen on `127.0.0.1:8765`. `ws_client.py` connects to
 $ pip install websockets starlette uvicorn
 $ python3 echo_server.py
 $ python3 ws_client.py
-demo
+Hello WebSocket
 ```
 
 ```
